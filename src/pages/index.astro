@@ -1,11 +1,36 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Layout title="Robin Cheng">
+	<section class="section" id="about">
+		<h2>About</h2>
+		<p class="lead">
+		I work with operational workflows and data systems. Most projects involve 
+		automating manual processes, building pipelines, and creating tools that 
+		help teams move faster.
+		</p>
+		<p>
+		My approach is straightforward: map existing processes, identify what's broken, 
+		build systems that fix it. Usually this means writing code to automate repetitive 
+		tasks and creating dashboards for operational visibility.
+		</p>
+		<p>
+		I'm particularly interested in workflow optimization and data pipeline architecture. 
+		Currently based in Tokyo, working with teams across different time zones.
+		</p>
+	</section>
+</QuietGridLayout>
+
+<style>
+	.section {
+		margin-bottom: var(--space-xl);
+		padding-bottom: var(--space-xl);
+	}
+	
+	.lead {
+		font-size: 1.25rem;
+		line-height: 1.7;
+	}
+	
+</style>

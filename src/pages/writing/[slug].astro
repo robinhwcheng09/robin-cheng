@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const posts = await getCollection('writing', (entry) => {
+        return (import.meta.env as any).PROD ? entry.data.draft !== true : true;
+    });
+    return posts.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await (entry as any).render();
+
+// Format date nicely
+const formatDate = (dateStr: string) => {
+    const [year, month] = dateStr.split('-');
+    const date = new Date(parseInt(year), parseInt(month) - 1);
+    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    };
+    ---
+
+    <Layout title={(entry as any).data.title}>
+    <article>
+        <header class="post-header">
+        <div class="post-date">{formatDate((entry as any).data.date)}</div>
+        <h1>{(entry as any).data.title}</h1>
+        </header>
+
+        <div class="post-content">
+        <Content />
+        </div>
+
+        <footer class="post-footer">
+        <a href="/writing" class="back-link">← All posts</a>
+        </footer>
+    </article>
+</Layout>
+
+<style>
+    article {
+        max-width: var(--content-width);
+    }
+    
+    .post-header {
+        margin-bottom: var(--space-xl);
+        padding-bottom: var(--space-lg);
+        border-bottom: 1px solid var(--color-border);
+    }
+    
+    .post-date {
+        font-family: var(--font-heading);
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-sm);
+    }
+    
+    .post-header h1 {
+        font-size: 2rem;
+        margin: 0;
+    }
+    
+    .post-content {
+        margin-bottom: var(--space-xl);
+    }
+    
+    /* Markdown content styling */
+    .post-content :global(h2) {
+        font-size: 1.5rem;
+        margin-top: var(--space-xl);
+        margin-bottom: var(--space-md);
+    }
+    
+    .post-content :global(h3) {
+        font-size: 1.25rem;
+        margin-top: var(--space-lg);
+        margin-bottom: var(--space-sm);
+    }
+    
+    .post-content :global(p) {
+        margin-bottom: var(--space-md);
+    }
+    
+    .post-content :global(ul),
+    .post-content :global(ol) {
+        margin: var(--space-md) 0;
+        padding-left: var(--space-lg);
+    }
+    
+    .post-content :global(li) {
+        margin-bottom: var(--space-sm);
+    }
+    
+    .post-content :global(code) {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.9em;
+        background: var(--color-bg);
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+    }
+    
+    .post-content :global(pre) {
+        background: var(--color-bg);
+        padding: var(--space-md);
+        overflow-x: auto;
+        margin: var(--space-md) 0;
+        border-radius: 4px;
+    }
+    
+    .post-content :global(pre code) {
+        background: none;
+        padding: 0;
+    }
+    
+    .post-content :global(blockquote) {
+        margin: var(--space-md) 0;
+        padding-left: var(--space-md);
+        border-left: 3px solid var(--color-border);
+        color: var(--color-text-muted);
+    }
+    
+    .post-footer {
+        padding-top: var(--space-lg);
+        border-top: 1px solid var(--color-border);
+    }
+    
+    .back-link {
+        font-family: var(--font-heading);
+        font-size: 0.95rem;
+        text-decoration: none;
+    }
+    
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>

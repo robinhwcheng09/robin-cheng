@@ -1,22 +1,112 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = 'Operations and data workflow specialist' } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
+		<link rel="icon" href="/favicon.ico" />
 		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div class="grid-layout">
+		<aside class="sidebar">
+			<h1><a href="/">Your Name</a></h1>
+			
+			<nav class="sidebar-nav">
+			<a href="/" class:list={{ active: currentPath === '/' }}>About</a>
+			<a href="/work" class:list={{ active: currentPath === '/work' }}>Work</a>
+			<a href="/writing" class:list={{ active: currentPath === '/writing' }}>Writing</a>
+			<a href="/contact" class:list={{ active: currentPath === '/contact' }}>Contact</a>
+			</nav>
+			
+			<div class="sidebar-meta">
+			Operations + Data<br>
+			Tokyo, Japan<br>
+			Available for projects
+			</div>
+		</aside>
+
+		<main class="main-content">
+			<slot />
+		</main>
+		</div>
 	</body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+	.grid-layout {
+		display: grid;
+		grid-template-columns: var(--sidebar-width) 1fr;
+		max-width: 1200px;
+		margin: 0 auto;
+		gap: var(--space-xl);
+		padding: var(--space-xl) var(--space-md);
+	}
+	
+	.sidebar {
+		position: sticky;
+		top: var(--space-xl);
+		height: fit-content;
+	}
+	
+	.sidebar h1 a {
+		text-decoration: none;
+	}
+	
+	.sidebar-nav {
+		margin-bottom: var(--space-lg);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-sm);
+	}
+	
+	.sidebar-nav a {
+		font-size: 0.95rem;
+		color: var(--color-text-muted);
+		text-decoration: none;
+	}
+	
+	.sidebar-nav a.active {
+		color: var(--color-text);
+	}
+	
+	.sidebar-meta {
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+		line-height: 1.6;
+	}
+	
+	.main-content {
+		max-width: var(--content-width);
+	}
+	
+	@media (max-width: 900px) {
+		.grid-layout {
+		grid-template-columns: 1fr;
+		gap: var(--space-lg);
+		}
+		
+		.sidebar {
+		position: static;
+		padding-bottom: var(--space-lg);
+		border-bottom: 1px solid var(--color-border);
+		}
+		
+		.sidebar-nav {
+		flex-direction: row;
+		flex-wrap: wrap;
+		}
 	}
 </style>

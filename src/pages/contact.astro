@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact">
+    <section class="section">
+        <h2>Contact</h2>
+        <p class="lead">
+        Open to interesting projects involving operational workflows, data systems, 
+        and process automation.
+        </p>
+    </section>
+
+    <div class="contact-info">
+        <div class="contact-item">
+        <h3>Email</h3>
+        <p>
+            <a href="mailto:your@email.com">your@email.com</a>
+        </p>
+        <p class="text-muted">
+            Best for project inquiries, collaboration opportunities, or questions 
+            about my work.
+        </p>
+        </div>
+
+        <div class="contact-item">
+        <h3>Location</h3>
+        <p>Tokyo, Japan</p>
+        <p class="text-muted">
+            Available for remote work across time zones. Open to travel for the 
+            right projects.
+        </p>
+        </div>
+
+        <div class="contact-item">
+        <h3>Response time</h3>
+        <p>Usually within 24-48 hours</p>
+        <p class="text-muted">
+            I read every email. If you don't hear back, check your spam folder 
+            or try reaching out again.
+        </p>
+        </div>
+    </div>
+
+    <section class="section">
+        <h2>What I'm looking for</h2>
+        <p>Projects where I can help:</p>
+        <ul>
+        <li>Automating manual operational processes</li>
+        <li>Building or fixing data pipelines</li>
+        <li>Integrating systems that don't talk to each other</li>
+        <li>Creating dashboards and reporting tools</li>
+        <li>Optimizing workflows and removing bottlenecks</li>
+        </ul>
+    </section>
+
+    <section class="section-last">
+        <h2>Not a good fit</h2>
+        <p>I'm probably not the right person for:</p>
+        <ul>
+        <li>Frontend-heavy projects (not my strength)</li>
+        <li>Mobile app development</li>
+        <li>Pure design work</li>
+        <li>Projects requiring deep ML/AI expertise</li>
+        </ul>
+        <p>
+        If you're unsure whether your project fits, reach out anyway. 
+        I'll let you know honestly if I can help or point you toward someone who can.
+        </p>
+    </section>
+    </QuietGridLayout>
+
+    <style>
+    .section {
+        margin-bottom: var(--space-xl);
+        padding-bottom: var(--space-xl);
+        border-bottom: 1px solid var(--color-border);
+    }
+    
+    .section-last {
+        margin-bottom: var(--space-xl);
+    }
+    
+    .lead {
+        font-size: 1.25rem;
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+    
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xl);
+        margin-bottom: var(--space-xl);
+    }
+    
+    .contact-item {
+        padding-bottom: var(--space-lg);
+        border-bottom: 1px solid var(--color-border);
+    }
+    
+    .contact-item:last-child {
+        border-bottom: none;
+    }
+    
+    .contact-item h3 {
+        margin-top: 0;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .contact-item p {
+        margin-bottom: var(--space-sm);
+    }
+    
+    .contact-item p:last-child {
+        margin-bottom: 0;
+    }
+    
+    ul {
+        list-style: none;
+        margin: var(--space-md) 0;
+    }
+    
+    ul li {
+        padding-left: 1.5rem;
+        margin-bottom: var(--space-sm);
+        position: relative;
+    }
+    
+    ul li::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--color-text-muted);
+    }
+</style>
