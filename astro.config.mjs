@@ -1,8 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://robinhwcheng09.github.io',
-    base: '/robin-cheng',
+  site: 'https://robincheng.com',
+  base: '',
+  integrations: [sitemap()],
 });
