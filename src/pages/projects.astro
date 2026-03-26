@@ -12,13 +12,6 @@ const sortedProjects = allProjects.sort((a, b) =>
 ---
 
 <Layout title="Projects">
-    <section class="section">
-        <h2>Projects</h2>
-        <p class="lead">
-        Recent projects focused on streamlining operations, building data systems, 
-        and automating workflows.
-        </p>
-    </section>
 
     <div class="projects">
         {sortedProjects.map((project) => (
@@ -32,13 +25,8 @@ const sortedProjects = allProjects.sort((a, b) =>
                 </div>
             </div>
             <div class="project-content">
-                <p>{project.data.summary}</p>
                 <div class="project-details">
-                    <h4>Challenge</h4>
-                    <p>{project.data.challenge}</p>
-
-                    <h4>Outcome</h4>
-                    <p>{project.data.outcome}</p>
+                    <p>{project.data.summary}</p>
 
                     <div class="tech-stack">
                         {project.data.techStack.map((tech) =>(

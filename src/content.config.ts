@@ -18,8 +18,6 @@ const projects = defineCollection({
         year: z.string(),
         category: z.string(),
         summary: z.string(),
-        challenge: z.string(),
-        outcome: z.string(),
         techStack: z.array(z.string()),
         draft: z.boolean().default(false).optional(),
     })
